@@ -1,4 +1,4 @@
-
+/*jshint esversion: 6 */
 const PIXEL_PAINTER = document.getElementById("pixelPainter");
 function gridFunctions(){
 function gridPopulator(rows, columns){
