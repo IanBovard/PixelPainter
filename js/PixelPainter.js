@@ -24,6 +24,10 @@ function gridPopulator(rows, columns){
               gridCols.addEventListener("click", function(){
       if (clickedRed === true){
         this.style.backgroundColor = "red";
+      }else if (clickedGreen === true){
+        this.style.backgroundColor = "green";
+      }else if (clickedBlue === true){
+        this.style.backgroundColor = "blue";
       }
     });
 
@@ -39,17 +43,52 @@ let gridMake = gridFunctions();
 gridMake(4,4);
 
 let clickedRed = false;
+let clickedGreen = false;
+let clickedBlue = false;
+
 console.log(clickedRed);
 
-let practiceBox = document.createElement("div");
-practiceBox.style.display = "inline-block";
-practiceBox.style.boxSizing = "border-box";
-practiceBox.style.width = "50px";
-practiceBox.style.height = "50px";
-practiceBox.style.border = "1px dashed";
-practiceBox.style.backgroundColor = "red";
-practiceBox.addEventListener("click",function(){
+let redBox = document.createElement("div");
+redBox.style.display = "inline-block";
+redBox.style.boxSizing = "border-box";
+redBox.style.width = "50px";
+redBox.style.height = "50px";
+redBox.style.border = "1px dashed";
+redBox.style.backgroundColor = "red";
+redBox.addEventListener("click",function(){
   clickedRed = true;
+  clickedBlue = false;
+  clickedGreen = false;
   console.log(clickedRed);
 });
-PIXEL_PAINTER.appendChild(practiceBox);
+PIXEL_PAINTER.appendChild(redBox);
+
+let greenBox = document.createElement("div");
+greenBox.style.display = "inline-block";
+greenBox.style.boxSizing = "border-box";
+greenBox.style.width = "50px";
+greenBox.style.height = "50px";
+greenBox.style.border = "1px dashed";
+greenBox.style.backgroundColor = "green";
+greenBox.addEventListener("click",function(){
+  clickedGreen = true;
+  clickedRed = false;
+  clickedBlue = false;
+  console.log(clickedRed);
+});
+PIXEL_PAINTER.appendChild(greenBox);
+
+let blueBox = document.createElement("div");
+blueBox.style.display = "inline-block";
+blueBox.style.boxSizing = "border-box";
+blueBox.style.width = "50px";
+blueBox.style.height = "50px";
+blueBox.style.border = "1px dashed";
+blueBox.style.backgroundColor = "blue";
+blueBox.addEventListener("click",function(){
+  clickedBlue = true;
+  clickedRed = false;
+  clickedGreen = false;
+});
+PIXEL_PAINTER.appendChild(blueBox);
+
