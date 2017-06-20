@@ -27,7 +27,7 @@ function gridFunctions(){
         });
 
     }
-
+console.log(1);
 
      }
   }
