@@ -1,9 +1,11 @@
 /*jshint esversion: 6 */
 const PIXEL_PAINTER = document.getElementById("pixelPainter");
+const COLOR_ARRAY = ["red", "blue" , "green" , "yellow"];
+
 function gridFunctions(){
+    let grid = document.createElement("div");
 
   function gridPopulator(rows, columns){
-    let grid = document.createElement("div");
     for(let i = 1; i <= rows; i++){
       let gridRows = document.createElement("div");
       PIXEL_PAINTER.appendChild(gridRows);
@@ -12,84 +14,37 @@ function gridFunctions(){
         let gridCols = document.createElement("div");
         gridCols.style.display = "inline-block";
         gridCols.style.boxSizing = "border-box";
-        gridCols.style.width = "50px";
-        gridCols.style.height = "50px";
+        gridCols.style.width = "25px";
+        gridCols.style.height = "25px";
         gridCols.style.border = "1px solid";
         gridRows.appendChild(gridCols);
-        gridCols.addEventListener("click", function(){
-          if (redBox.value = "true"){
-            this.style.backgroundColor = "red";
-          }else if (clickedGreen === true){
-            this.style.backgroundColor = "green";
-          }else if (clickedBlue === true){
-            this.style.backgroundColor = "blue";
-          }
-        });
-
     }
-console.log(1);
 
      }
   }
   return gridPopulator;
 }
 
-let gridMake = gridFunctions();
-gridMake(4,4);
+function colorFunctions(){
+    let colorGrid = document.createElement("div");
+    PIXEL_PAINTER.appendChild(colorGrid);
+  function colorPopulator(array){
+    for (let i = 0; i < array.length; i++){
+      let colorRows = document.createElement("div");
+      colorRows.style.display = "inline-block";
+      colorRows.style.boxSizing = "border-box";
+      colorRows.style.width = "50px";
+      colorRows.style.height = "50px";
+      colorRows.style.border = "1px solid";
+      colorRows.style.backgroundColor = array[i];
+      colorGrid.appendChild(colorRows);
 
-let clickedRed = false;
-let clickedGreen = false;
-let clickedBlue = false;
-
-console.log(clickedRed);
-
-let redBox = document.createElement("div");
-redBox.setAttribute("value", "false");
-redBox.style.display = "inline-block";
-redBox.style.boxSizing = "border-box";
-redBox.style.width = "50px";
-redBox.style.height = "50px";
-redBox.style.border = "1px dashed";
-redBox.style.backgroundColor = "red";
-redBox.addEventListener("click",colorSelect);
-  
-PIXEL_PAINTER.appendChild(redBox);
-
-let greenBox = document.createElement("div");
-greenBox.style.display = "inline-block";
-greenBox.style.boxSizing = "border-box";
-greenBox.style.width = "50px";
-greenBox.style.height = "50px";
-greenBox.style.border = "1px dashed";
-greenBox.style.backgroundColor = "green";
-greenBox.addEventListener("click",function(){
-  if(this.click){
-  clickedGreen = true;}
-  console.log(clickedRed);
-});
-PIXEL_PAINTER.appendChild(greenBox);
-
-let blueBox = document.createElement("div");
-blueBox.style.display = "inline-block";
-blueBox.style.boxSizing = "border-box";
-blueBox.style.width = "50px";
-blueBox.style.height = "50px";
-blueBox.style.border = "1px dashed";
-blueBox.style.backgroundColor = "blue";
-blueBox.addEventListener("click",function(){
-  if(this.click){
-  clickedBlue = true;
-}
-});
-PIXEL_PAINTER.appendChild(blueBox);
-
-function colorSelect(){
-  if(this.click){
-    this.selected;
-    this.setAttribute("value", "true");
-    console.log(this.value);
+    }
   }
-
+return colorPopulator;
 }
 
-
+let gridMake = gridFunctions();
+gridMake(10,10);
+let colorGridMake = colorFunctions();
+colorGridMake(COLOR_ARRAY);
