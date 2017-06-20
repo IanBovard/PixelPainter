@@ -1,6 +1,7 @@
 
 const PIXEL_PAINTER = document.getElementById("pixelPainter");
 function gridFunctions(){
+
 function gridPopulator(rows, columns){
 	let grid = document.createElement("div");
 	for(let i = 1; i <= rows; i++){
@@ -9,8 +10,8 @@ function gridPopulator(rows, columns){
 		gridRows.style.boxSizing = "border-box";
 		gridRows.style.width = "50px";
 		gridRows.style.height = "50px";
-		//gridRows.style.border = "1px solid";
 		PIXEL_PAINTER.appendChild(gridRows);
+
 			for(let j = 1; j <= columns; j++){
 				let gridCols = document.createElement("div");
 					gridCols.style.display = "inline-block";
@@ -20,6 +21,12 @@ function gridPopulator(rows, columns){
 					gridCols.style.border = "1px solid";
 					gridRows.appendChild(gridCols);
 
+              gridCols.addEventListener("click", function(){
+      if (clickedRed === true){
+        this.style.backgroundColor = "red";
+      }
+    });
+
 		}
 
 
@@ -27,6 +34,22 @@ function gridPopulator(rows, columns){
 }
 return gridPopulator;
 }
+
 let gridMake = gridFunctions();
 gridMake(4,4);
-console.log(gridMake);
+
+let clickedRed = false;
+console.log(clickedRed);
+
+let practiceBox = document.createElement("div");
+practiceBox.style.display = "inline-block";
+practiceBox.style.boxSizing = "border-box";
+practiceBox.style.width = "50px";
+practiceBox.style.height = "50px";
+practiceBox.style.border = "1px dashed";
+practiceBox.style.backgroundColor = "red";
+practiceBox.addEventListener("click",function(){
+  clickedRed = true;
+  console.log(clickedRed);
+});
+PIXEL_PAINTER.appendChild(practiceBox);
