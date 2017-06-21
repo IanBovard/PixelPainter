@@ -19,6 +19,7 @@ function gridFunctions(){
         gridCols.addEventListener("mousedown", colorSwatch.gridSelect);
         gridCols.addEventListener("mouseover", colorSwatch.mouseDrag);
         gridCols.addEventListener("mouseup", colorSwatch.mouseUp);
+        gridCols.addEventListener("click", colorSwatch.fill);
         gridRows.appendChild(gridCols);
 
       }
@@ -45,13 +46,17 @@ function colorPopulator(array){
 function cellSwatch(){
   let bgColor;
   let cellClicked = false;
+  let fillClicked = false;
+  let cells = document.getElementsByClassName("gridCells");
+
   function colorSelect(){
     bgColor = this.id;
-    console.log(bgColor);
   }
   function gridSelect(){
     cellClicked = true;
     this.style.backgroundColor = bgColor;
+    this.setAttribute("id", "start");
+    console.log(this.id);
   }
   function mouseDrag(){
     if (cellClicked === true){
@@ -61,12 +66,16 @@ function cellSwatch(){
   function mouseUp(){
     cellClicked = false;
   }
-  function fill(){
-    let cells = document.getElementsByClassName("gridCells");
-  for (let i = 0; i < 225; i++){
-    cells[i].style.backgroundColor = bgColor;
+  function fillClick(){
+    fillClicked = true;
   }
-
+  function fill(){
+    if (fillClicked === true){
+      for (let i = 0; i < 225; i++){
+        cells[i].style.backgroundColor = bgColor;
+        fillClicked = false;
+      }
+    }
   }
 
   return{
@@ -74,6 +83,7 @@ function cellSwatch(){
     gridSelect : gridSelect,
     mouseDrag : mouseDrag,
     mouseUp : mouseUp,
+    fillClick : fillClick,
     fill : fill
   };
 }
@@ -110,7 +120,7 @@ clearButton.style.fontSize = "30px";
 clearButton.style.border = "2px solid";
 clearButton.style.height = "50px";
 clearButton.style.width = "100px";
-clearButton.innerHTML = "Clear";
+clearButton.innerHTML = "Clear!";
 clearButton.addEventListener("click", clear);
 PIXEL_PAINTER.appendChild(clearButton);
 
@@ -122,6 +132,6 @@ fillButton.style.fontSize = "30px";
 fillButton.style.border = "2px solid";
 fillButton.style.height = "50px";
 fillButton.style.width = "100px";
-fillButton.innerHTML = "Fill";
-fillButton.addEventListener("click", colorSwatch.fill);
+fillButton.innerHTML = "Fill!";
+fillButton.addEventListener("click", colorSwatch.fillClick);
 PIXEL_PAINTER.appendChild(fillButton);
