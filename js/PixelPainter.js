@@ -10,21 +10,23 @@ function gridFunctions(){
 
       for(let j = 1; j <= columns; j++){
         let gridCols = document.createElement("div");
+        gridCols.setAttribute("class", "gridCells");
         gridCols.style.display = "inline-block";
         gridCols.style.boxSizing = "border-box";
         gridCols.style.width = "25px";
         gridCols.style.height = "25px";
         gridCols.style.border = "1px solid";
-        gridCols.addEventListener("click", colorSwatch.gridSelect);
+        gridCols.addEventListener("mousedown", colorSwatch.gridSelect);
+        gridCols.addEventListener("mouseover", colorSwatch.mouseDrag);
+        gridCols.addEventListener("mouseup", colorSwatch.mouseUp);
         gridRows.appendChild(gridCols);
       }
 
     }
   }
   return gridPopulator;
-}
 
-function colorFunctions(){
+}
   function colorPopulator(array){
     for (let i = 0; i < array.length; i++){
       let colorRows = document.createElement("div");
@@ -37,29 +39,81 @@ function colorFunctions(){
       colorRows.style.backgroundColor = array[i];
       colorRows.addEventListener("click", colorSwatch.colorSelect);
       PIXEL_PAINTER.appendChild(colorRows);
-
     }
-  }
-  return colorPopulator;
 }
 
 function cellSwatch(){
   let bgColor;
+  let cellClicked = false;
   function colorSelect(){
     bgColor = this.id;
     console.log(bgColor);
   }
   function gridSelect(){
+    cellClicked = true;
     this.style.backgroundColor = bgColor;
   }
+  function mouseDrag(){
+    if (cellClicked === true){
+      this.style.backgroundColor = bgColor;
+    }
+  }
+  function mouseUp(){
+    cellClicked = false;
+  }
+
   return{
     colorSelect : colorSelect,
-    gridSelect : gridSelect
+    gridSelect : gridSelect,
+    mouseDrag : mouseDrag,
+    mouseUp : mouseUp
   };
+}
+
+function clear(){
+  let cells = document.getElementsByClassName("gridCells");
+  for (let i = 0; i < 100; i++){
+    cells[i].style.backgroundColor = "transparent";
+  }
 }
 
 let colorSwatch = cellSwatch();
 let gridMake = gridFunctions();
 gridMake(10,10);
-let colorGridMake = colorFunctions();
-colorGridMake(COLOR_ARRAY);
+colorPopulator(COLOR_ARRAY);
+
+let eraseButton = document.createElement("div");
+eraseButton.setAttribute("id", "transparent");
+eraseButton.style.boxSizing = "border-box";
+eraseButton.style.textAlign = "center";
+eraseButton.style.fontSize = "30px";
+eraseButton.style.border = "2px solid";
+eraseButton.style.height = "50px";
+eraseButton.style.width = "100px";
+eraseButton.innerHTML = "Erase!";
+eraseButton.addEventListener("click", colorSwatch.colorSelect);
+PIXEL_PAINTER.appendChild(eraseButton);
+
+let clearButton = document.createElement("div");
+clearButton.style.display = "inline-block";
+clearButton.style.boxSizing = "border-box";
+clearButton.style.textAlign = "center";
+clearButton.style.fontSize = "30px";
+clearButton.style.border = "2px solid";
+clearButton.style.height = "50px";
+clearButton.style.width = "100px";
+clearButton.innerHTML = "Clear";
+clearButton.addEventListener("click", clear);
+PIXEL_PAINTER.appendChild(clearButton);
+
+
+
+
+
+
+
+
+
+
+
+
