@@ -65,7 +65,7 @@ function cellSwatch(){
     let cells = document.getElementsByClassName("gridCells");
   for (let i = 0; i < 225; i++){
     cells[i].style.backgroundColor = bgColor;
-  } 
+  }
 
   }
 
