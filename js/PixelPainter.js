@@ -3,13 +3,19 @@ const PIXEL_PAINTER = document.getElementById("pixelPainter");
 const COLOR_ARRAY = ["red", "blue" , "green" , "yellow"];
 
 function gridFunctions(){
+  //grid populator is the function used to create grid.
+  //Rows and Columns are the arguments passed in.
   function gridPopulator(rows, columns){
+    //we create a for loop to iterate through the rows passed in by the arguement.
     for(let i = 1; i <= rows; i++){
+      //grid rows is a div created that we append to the main div.
       let gridRows = document.createElement("div");
       PIXEL_PAINTER.appendChild(gridRows);
-
+      //We create a second loop for the second arguement passed in which is for columns.
       for(let j = 1; j <= columns; j++){
+        //we create a new div for columns and append to gridRows.
         let gridCols = document.createElement("div");
+        //We give all cells in grid gridCols a class of grid cells
         gridCols.setAttribute("class", "gridCells");
         gridCols.style.display = "inline-block";
         gridCols.style.boxSizing = "border-box";
@@ -58,6 +64,7 @@ function cellSwatch(){
       this.style.backgroundColor = bgColor;
     }
   }
+  
   function mouseUp(){
     cellClicked = false;
   }
