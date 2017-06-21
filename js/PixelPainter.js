@@ -7,6 +7,7 @@ function gridPopulator(rows, columns){
   for(let i = 1; i <= rows; i++){
     let gridRows = document.createElement("div");
     PIXEL_PAINTER.appendChild(gridRows);
+    PIXEL_PAINTER.addEventListener("mouseup", colorSwatch.mouseUp);
 
     for(let j = 1; j <= columns; j++){
       let gridCols = document.createElement("div");
@@ -50,7 +51,7 @@ function toolBoxPopulator(array){
     toolRows.style.boxSizing = "border-box";
     toolRows.style.textAlign = "center";
     toolRows.style.fontSize = "30px";
-    toolRows.style.border = "2px solid";
+    toolRows.style.border = "1px solid";
     toolRows.style.height = "50px";
     toolRows.style.width = "100px";
     toolRows.innerHTML = array[i];
@@ -79,9 +80,6 @@ function cellSwatch(){
   function mouseUp(){
     cellClicked = false;
   }
-  function toolFunctionality(){
-
-  }
   function toolBox(){
     let toolSelect = this.id;
     switch (toolSelect){
@@ -93,6 +91,7 @@ function cellSwatch(){
         gridCells[i].style.backgroundColor = "transparent";
       }
     }
+    cellClicked = false;
   }
   return{
     colorSelect : colorSelect,
