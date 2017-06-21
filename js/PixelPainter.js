@@ -3,8 +3,6 @@ const PIXEL_PAINTER = document.getElementById("pixelPainter");
 const COLOR_ARRAY = ["red", "blue" , "green" , "yellow"];
 
 function gridFunctions(){
-    let grid = document.createElement("div");
-
   function gridPopulator(rows, columns){
     for(let i = 1; i <= rows; i++){
       let gridRows = document.createElement("div");
@@ -19,16 +17,14 @@ function gridFunctions(){
         gridCols.style.border = "1px solid";
         gridCols.addEventListener("click", colorSwatch.gridSelect);
         gridRows.appendChild(gridCols);
-    }
+      }
 
-     }
+    }
   }
   return gridPopulator;
 }
 
 function colorFunctions(){
-    let colorGrid = document.createElement("div");
-    PIXEL_PAINTER.appendChild(colorGrid);
   function colorPopulator(array){
     for (let i = 0; i < array.length; i++){
       let colorRows = document.createElement("div");
@@ -40,26 +36,26 @@ function colorFunctions(){
       colorRows.style.border = "1px solid";
       colorRows.style.backgroundColor = array[i];
       colorRows.addEventListener("click", colorSwatch.colorSelect);
-      colorGrid.appendChild(colorRows);
+      PIXEL_PAINTER.appendChild(colorRows);
 
     }
   }
-return colorPopulator;
+  return colorPopulator;
 }
 
 function cellSwatch(){
   let bgColor;
   function colorSelect(){
     bgColor = this.id;
-  console.log(bgColor);
+    console.log(bgColor);
   }
   function gridSelect(){
-  this.style.backgroundColor = bgColor;
-}
-return{
-  colorSelect : colorSelect,
-  gridSelect : gridSelect
-};
+    this.style.backgroundColor = bgColor;
+  }
+  return{
+    colorSelect : colorSelect,
+    gridSelect : gridSelect
+  };
 }
 
 let colorSwatch = cellSwatch();
