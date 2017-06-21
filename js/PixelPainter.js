@@ -10,6 +10,7 @@ function gridFunctions(){
 
       for(let j = 1; j <= columns; j++){
         let gridCols = document.createElement("div");
+        gridCols.setAttribute("class", "gridCells");
         gridCols.style.display = "inline-block";
         gridCols.style.boxSizing = "border-box";
         gridCols.style.width = "25px";
@@ -17,6 +18,7 @@ function gridFunctions(){
         gridCols.style.border = "1px solid";
         gridCols.addEventListener("click", colorSwatch.gridSelect);
         gridRows.appendChild(gridCols);
+
       }
 
     }
@@ -24,7 +26,7 @@ function gridFunctions(){
   return gridPopulator;
 }
 
-function colorFunctions(){
+
   function colorPopulator(array){
     for (let i = 0; i < array.length; i++){
       let colorRows = document.createElement("div");
@@ -40,8 +42,7 @@ function colorFunctions(){
 
     }
   }
-  return colorPopulator;
-}
+  
 
 function cellSwatch(){
   let bgColor;
@@ -61,5 +62,42 @@ function cellSwatch(){
 let colorSwatch = cellSwatch();
 let gridMake = gridFunctions();
 gridMake(10,10);
-let colorGridMake = colorFunctions();
-colorGridMake(COLOR_ARRAY);
+colorPopulator(COLOR_ARRAY);
+
+
+
+
+
+
+
+
+
+let y = document.createElement("div");
+y.innerHTML = "ERASE";
+PIXEL_PAINTER.appendChild(y);
+y.addEventListener("click", colorSwatch.colorSelect);
+y.setAttribute("id", "transparent");
+
+
+
+let h = document.getElementsByClassName("gridCells");
+console.log(h);
+let r = document.createElement("div");
+r.innerHTML = "CLEAR";
+PIXEL_PAINTER.appendChild(r);
+r.addEventListener("click", function(){
+  function clearGrid(){for (let i=0;i<100;i++){
+  h[i].style.backgroundColor = "white";
+}
+});
+
+
+
+
+
+
+
+
+
+
+
