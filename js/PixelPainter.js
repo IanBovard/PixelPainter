@@ -17,6 +17,7 @@ function gridFunctions(){
         gridCols.style.width = "25px";
         gridCols.style.height = "25px";
         gridCols.style.border = "1px solid";
+        gridCols.addEventListener("click", colorSwatch.gridSelect);
         gridRows.appendChild(gridCols);
     }
 
@@ -31,12 +32,14 @@ function colorFunctions(){
   function colorPopulator(array){
     for (let i = 0; i < array.length; i++){
       let colorRows = document.createElement("div");
+      colorRows.setAttribute("id", array[i]);
       colorRows.style.display = "inline-block";
       colorRows.style.boxSizing = "border-box";
       colorRows.style.width = "50px";
       colorRows.style.height = "50px";
       colorRows.style.border = "1px solid";
       colorRows.style.backgroundColor = array[i];
+      colorRows.addEventListener("click", colorSwatch.colorSelect);
       colorGrid.appendChild(colorRows);
 
     }
@@ -44,6 +47,22 @@ function colorFunctions(){
 return colorPopulator;
 }
 
+function cellSwatch(){
+  let bgColor;
+  function colorSelect(){
+    bgColor = this.id;
+  console.log(bgColor);
+  }
+  function gridSelect(){
+  this.style.backgroundColor = bgColor;
+}
+return{
+  colorSelect : colorSelect,
+  gridSelect : gridSelect
+};
+}
+
+let colorSwatch = cellSwatch();
 let gridMake = gridFunctions();
 gridMake(10,10);
 let colorGridMake = colorFunctions();
