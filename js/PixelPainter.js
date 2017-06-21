@@ -61,12 +61,20 @@ function cellSwatch(){
   function mouseUp(){
     cellClicked = false;
   }
+  function fill(){
+    let cells = document.getElementsByClassName("gridCells");
+  for (let i = 0; i < 225; i++){
+    cells[i].style.backgroundColor = bgColor;
+  } 
+
+  }
 
   return{
     colorSelect : colorSelect,
     gridSelect : gridSelect,
     mouseDrag : mouseDrag,
-    mouseUp : mouseUp
+    mouseUp : mouseUp,
+    fill : fill
   };
 }
 
@@ -105,3 +113,15 @@ clearButton.style.width = "100px";
 clearButton.innerHTML = "Clear";
 clearButton.addEventListener("click", clear);
 PIXEL_PAINTER.appendChild(clearButton);
+
+let fillButton = document.createElement("div");
+fillButton.style.display = "inline-block";
+fillButton.style.boxSizing = "border-box";
+fillButton.style.textAlign = "center";
+fillButton.style.fontSize = "30px";
+fillButton.style.border = "2px solid";
+fillButton.style.height = "50px";
+fillButton.style.width = "100px";
+fillButton.innerHTML = "Fill";
+fillButton.addEventListener("click", colorSwatch.fill);
+PIXEL_PAINTER.appendChild(fillButton);
