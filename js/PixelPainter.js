@@ -72,14 +72,14 @@ function cellSwatch(){
 
 function clear(){
   let cells = document.getElementsByClassName("gridCells");
-  for (let i = 0; i < 100; i++){
+  for (let i = 0; i < 225; i++){
     cells[i].style.backgroundColor = "transparent";
   }
 }
 
 let colorSwatch = cellSwatch();
 let gridMake = gridFunctions();
-gridMake(10,10);
+gridMake(15,15);
 colorPopulator(COLOR_ARRAY);
 
 let eraseButton = document.createElement("div");
