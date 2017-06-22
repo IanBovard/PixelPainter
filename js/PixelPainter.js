@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 const PIXEL_PAINTER = document.getElementById("pixelPainter");
-const COLOR_ARRAY = ["red", "blue" , "green" , "yellow"];
+const COLOR_ARRAY = ["red", "blue" , "green" , "yellow", "orange", "purple", "brown"];
 const TOOL_ARRAY = ["Erase", "Clear"];
 
 function gridPopulator(rows, columns){
