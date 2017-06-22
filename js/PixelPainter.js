@@ -7,6 +7,7 @@ function bodyColor(){
   let bodyCell = document.getElementsByTagName("body")[0];
   console.log(bodyCell);
   bodyCell.style.backgroundColor = "lightblue";
+  bodyCell.addEventListener("mouseover", colorSwatch.cellHover);
 }
 function titleBar(){
   let title = document.getElementsByTagName("h1")[0];
@@ -25,13 +26,11 @@ function gridPopulator(rows, columns){
       gridCols.style.backgroundColor = "white";
       gridCols.style.display = "inline-block";
       gridCols.style.boxSizing = "border-box";
-      gridCols.style.width = "15px";
-      gridCols.style.height = "15px";
+      gridCols.style.width = "20px";
+      gridCols.style.height = "20px";
       gridCols.addEventListener("mousedown", colorSwatch.gridSelect);
       gridCols.addEventListener("mouseover", colorSwatch.mouseDrag);
       gridCols.addEventListener("mouseup", colorSwatch.mouseUp);
-      gridCols.addEventListener("mouseover", colorSwatch.cellHover);
-      gridCols.addEventListener("mouseout", colorSwatch.cellLeave);
       gridRows.appendChild(gridCols);
 
     }
@@ -86,12 +85,7 @@ function cellSwatch(){
     this.style.border = "5px inset";
   }
   function cellHover(){
-    this.style.border = "1px outset";
-    this.style.backgroundColor = bgColor;
-  }
-  function cellLeave(){
-      this.style.border = "none";
-      this.style.backgroundColor = "white";
+      this.style.cursor = "crosshair";
   }
   function colorMouseUp(){
     this.style.border = "4px outset";
@@ -138,7 +132,6 @@ function cellSwatch(){
     colorMouseUp : colorMouseUp,
     toolBoxMouseUp : toolBoxMouseUp,
     cellHover :cellHover,
-    cellLeave : cellLeave
   };
 }
 let colorSwatch = cellSwatch();
