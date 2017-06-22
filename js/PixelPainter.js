@@ -16,7 +16,7 @@ function gridPopulator(rows, columns){
       gridCols.style.boxSizing = "border-box";
       gridCols.style.width = "25px";
       gridCols.style.height = "25px";
-      gridCols.style.border = "1px solid";
+      gridCols.style.border = "2px outset";
       gridCols.addEventListener("mousedown", colorSwatch.gridSelect);
       gridCols.addEventListener("mouseover", colorSwatch.mouseDrag);
       gridCols.addEventListener("mouseup", colorSwatch.mouseUp);
@@ -36,9 +36,10 @@ function colorPopulator(array){
     colorRows.style.boxSizing = "border-box";
     colorRows.style.width = "50px";
     colorRows.style.height = "50px";
-    colorRows.style.border = "1px solid";
+    colorRows.style.border = "4px outset";
     colorRows.style.backgroundColor = array[i];
-    colorRows.addEventListener("click", colorSwatch.colorSelect);
+    colorRows.addEventListener("mousedown", colorSwatch.colorSelect);
+    colorRows.addEventListener("mouseup", colorSwatch.colorMouseUp);
     PIXEL_PAINTER.appendChild(colorRows);
   }
 }
@@ -51,11 +52,12 @@ function toolBoxPopulator(array){
     toolRows.style.boxSizing = "border-box";
     toolRows.style.textAlign = "center";
     toolRows.style.fontSize = "30px";
-    toolRows.style.border = "1px solid";
+    toolRows.style.border = "4px outset";
     toolRows.style.height = "50px";
     toolRows.style.width = "100px";
     toolRows.innerHTML = array[i];
-    toolRows.addEventListener("click", colorSwatch.toolBox);
+    toolRows.addEventListener("mousedown", colorSwatch.toolBox);
+    toolRows.addEventListener("mouseup", colorSwatch.toolBoxMouseUp);
     PIXEL_PAINTER.appendChild(toolRows);
   }
 }
@@ -67,6 +69,10 @@ function cellSwatch(){
 
   function colorSelect(){
     bgColor = this.id;
+    this.style.border = "5px inset";
+  }
+  function colorMouseUp(){
+    this.style.border = "4px outset";
   }
   function gridSelect(){
     cellClicked = true;
@@ -84,21 +90,28 @@ function cellSwatch(){
     let toolSelect = this.id;
     switch (toolSelect){
       case "Erase":
+      this.style.border = "4px inset";
       bgColor = "transparent";
       break;
       case "Clear":
+      this.style.border = "4px inset";
       for (let i = 0; i < 225; i++){
         gridCells[i].style.backgroundColor = "transparent";
       }
     }
     cellClicked = false;
   }
+  function toolBoxMouseUp(){
+    this.style.border = "4px outset";
+  }
   return{
     colorSelect : colorSelect,
     gridSelect : gridSelect,
     mouseDrag : mouseDrag,
     mouseUp : mouseUp,
-    toolBox : toolBox
+    toolBox : toolBox,
+    colorMouseUp : colorMouseUp,
+    toolBoxMouseUp : toolBoxMouseUp
   };
 }
 let colorSwatch = cellSwatch();
