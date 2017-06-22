@@ -3,15 +3,26 @@ const PIXEL_PAINTER = document.getElementById("pixelPainter");
 const COLOR_ARRAY = ["red", "blue" , "green" , "yellow", "orange", "purple", "brown"];
 const TOOL_ARRAY = ["Erase", "Clear"];
 
+function bodyColor(){
+  let bodyCell = document.getElementsByTagName("body")[0];
+  console.log(bodyCell);
+  bodyCell.style.backgroundColor = "lightblue";
+}
+function titleBar(){
+  let title = document.getElementsByTagName("h1")[0];
+  title.style.color = "white";
+  title.style.fontFamily = "Lucida Console, Monaco, sans-serif";
+}
+
 function gridPopulator(rows, columns){
   for(let i = 1; i <= rows; i++){
     let gridRows = document.createElement("div");
     PIXEL_PAINTER.appendChild(gridRows);
     PIXEL_PAINTER.addEventListener("mouseup", colorSwatch.mouseUp);
-
     for(let j = 1; j <= columns; j++){
       let gridCols = document.createElement("div");
       gridCols.setAttribute("class", "gridCells");
+      gridCols.style.backgroundColor = "white";
       gridCols.style.display = "inline-block";
       gridCols.style.boxSizing = "border-box";
       gridCols.style.width = "25px";
@@ -19,6 +30,7 @@ function gridPopulator(rows, columns){
       gridCols.style.border = "2px outset";
       gridCols.addEventListener("mousedown", colorSwatch.gridSelect);
       gridCols.addEventListener("mouseover", colorSwatch.mouseDrag);
+      gridCols.addEventListener("hover", colorSwatch.gridHover);
       gridCols.addEventListener("mouseup", colorSwatch.mouseUp);
       gridRows.appendChild(gridCols);
 
@@ -48,6 +60,7 @@ function toolBoxPopulator(array){
   for (let i = 0; i <array.length; i++){
     let toolRows = document.createElement("div");
     toolRows.setAttribute("id", array[i]);
+    toolRows.style.backgroundColor = "lightslategrey";
     toolRows.style.margin = "1px";
     toolRows.style.boxSizing = "border-box";
     toolRows.style.textAlign = "center";
@@ -56,6 +69,8 @@ function toolBoxPopulator(array){
     toolRows.style.height = "50px";
     toolRows.style.width = "100px";
     toolRows.innerHTML = array[i];
+    toolRows.style.fontFamily = "Lucida Console, Monaco, sans-serif";
+    toolRows.style.color = "white";
     toolRows.addEventListener("mousedown", colorSwatch.toolBox);
     toolRows.addEventListener("mouseup", colorSwatch.toolBoxMouseUp);
     PIXEL_PAINTER.appendChild(toolRows);
@@ -70,6 +85,9 @@ function cellSwatch(){
   function colorSelect(){
     bgColor = this.id;
     this.style.border = "5px inset";
+  }
+  function gridHover(){
+    this.style.backgroundColor = "lightslategrey";
   }
   function colorMouseUp(){
     this.style.border = "4px outset";
@@ -91,12 +109,12 @@ function cellSwatch(){
     switch (toolSelect){
       case "Erase":
       this.style.border = "4px inset";
-      bgColor = "transparent";
+      bgColor = "white";
       break;
       case "Clear":
       this.style.border = "4px inset";
       for (let i = 0; i < 225; i++){
-        gridCells[i].style.backgroundColor = "transparent";
+        gridCells[i].style.backgroundColor = "white";
       }
     }
     cellClicked = false;
@@ -111,10 +129,13 @@ function cellSwatch(){
     mouseUp : mouseUp,
     toolBox : toolBox,
     colorMouseUp : colorMouseUp,
-    toolBoxMouseUp : toolBoxMouseUp
+    toolBoxMouseUp : toolBoxMouseUp,
+    gridHover :gridHover
   };
 }
 let colorSwatch = cellSwatch();
 gridPopulator(15,15);
 colorPopulator(COLOR_ARRAY);
 toolBoxPopulator(TOOL_ARRAY);
+bodyColor();
+titleBar();
