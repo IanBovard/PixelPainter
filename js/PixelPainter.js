@@ -29,7 +29,6 @@ function gridPopulator(rows, columns){
       gridCols.style.height = "15px";
       gridCols.addEventListener("mousedown", colorSwatch.gridSelect);
       gridCols.addEventListener("mouseover", colorSwatch.mouseDrag);
-      gridCols.addEventListener("hover", colorSwatch.gridHover);
       gridCols.addEventListener("mouseup", colorSwatch.mouseUp);
       gridCols.addEventListener("mouseover", colorSwatch.cellHover);
       gridCols.addEventListener("mouseout", colorSwatch.cellLeave);
@@ -80,24 +79,20 @@ function toolBoxPopulator(array){
 function cellSwatch(){
   let bgColor;
   let cellClicked = false;
-  let fillClicked = false;
   let gridCells = document.getElementsByClassName("gridCells");
 
   function colorSelect(){
     bgColor = this.id;
     this.style.border = "5px inset";
   }
-  function gridHover(){
-    this.style.backgroundColor = "lightslategrey";
-  }
   function cellHover(){
-    this.style.border = "2px outset";
+    this.style.border = "1px outset";
     this.style.backgroundColor = bgColor;
   }
   function cellLeave(){
     if (cellClicked === false){
-    this.style.border = "none";
-    this.style.backgroundColor = "white";
+      this.style.border = "none";
+      this.style.backgroundColor = "white";
     }
   }
   function colorMouseUp(){
@@ -106,10 +101,12 @@ function cellSwatch(){
   function gridSelect(){
     cellClicked = true;
     this.style.backgroundColor = bgColor;
+    this.style.border = "none";
   }
   function mouseDrag(){
     if (cellClicked === true){
       this.style.backgroundColor = bgColor;
+      this.style.border = "none";
     }
   }
   function mouseUp(){
@@ -123,13 +120,13 @@ function cellSwatch(){
       bgColor = "white";
       break;
       case "Clear":
-      this.style.border = "none";
+      this.style.border = "4px inset";
       for (let i = 0; i < 900; i++){
         gridCells[i].style.backgroundColor = "white";
         gridCells[i].style.border = "none";
+        cellClicked = false;
       }
     }
-    cellClicked = false;
   }
   function toolBoxMouseUp(){
     this.style.border = "4px outset";
