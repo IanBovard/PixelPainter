@@ -25,13 +25,14 @@ function gridPopulator(rows, columns){
       gridCols.style.backgroundColor = "white";
       gridCols.style.display = "inline-block";
       gridCols.style.boxSizing = "border-box";
-      gridCols.style.width = "25px";
-      gridCols.style.height = "25px";
-      gridCols.style.border = "2px outset";
+      gridCols.style.width = "15px";
+      gridCols.style.height = "15px";
       gridCols.addEventListener("mousedown", colorSwatch.gridSelect);
       gridCols.addEventListener("mouseover", colorSwatch.mouseDrag);
       gridCols.addEventListener("hover", colorSwatch.gridHover);
       gridCols.addEventListener("mouseup", colorSwatch.mouseUp);
+      gridCols.addEventListener("mouseover", colorSwatch.cellHover);
+      gridCols.addEventListener("mouseout", colorSwatch.cellLeave);
       gridRows.appendChild(gridCols);
 
     }
@@ -89,6 +90,16 @@ function cellSwatch(){
   function gridHover(){
     this.style.backgroundColor = "lightslategrey";
   }
+  function cellHover(){
+    this.style.border = "2px outset";
+    this.style.backgroundColor = bgColor;
+  }
+  function cellLeave(){
+    if (cellClicked === false){
+    this.style.border = "none";
+    this.style.backgroundColor = "white";
+    }
+  }
   function colorMouseUp(){
     this.style.border = "4px outset";
   }
@@ -112,9 +123,10 @@ function cellSwatch(){
       bgColor = "white";
       break;
       case "Clear":
-      this.style.border = "4px inset";
-      for (let i = 0; i < 225; i++){
+      this.style.border = "none";
+      for (let i = 0; i < 900; i++){
         gridCells[i].style.backgroundColor = "white";
+        gridCells[i].style.border = "none";
       }
     }
     cellClicked = false;
@@ -130,11 +142,12 @@ function cellSwatch(){
     toolBox : toolBox,
     colorMouseUp : colorMouseUp,
     toolBoxMouseUp : toolBoxMouseUp,
-    gridHover :gridHover
+    cellHover :cellHover,
+    cellLeave : cellLeave
   };
 }
 let colorSwatch = cellSwatch();
-gridPopulator(15,15);
+gridPopulator(30,30);
 colorPopulator(COLOR_ARRAY);
 toolBoxPopulator(TOOL_ARRAY);
 bodyColor();
