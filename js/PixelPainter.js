@@ -90,10 +90,8 @@ function cellSwatch(){
     this.style.backgroundColor = bgColor;
   }
   function cellLeave(){
-    if (cellClicked === false){
       this.style.border = "none";
       this.style.backgroundColor = "white";
-    }
   }
   function colorMouseUp(){
     this.style.border = "4px outset";
