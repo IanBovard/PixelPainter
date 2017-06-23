@@ -1,0 +1,21 @@
+#body{
+  background-color: lightblue;
+}
+#title{
+  color : white;
+  font-family: sans-serif;
+  text-align : center;
+}
+#pixelPainter{
+  min-width: 900px;
+  text-align: center;
+}
+.grid{
+  margin : 0;
+}
+.colors{
+  margin :5px;
+}
+#Erase{
+
+}
