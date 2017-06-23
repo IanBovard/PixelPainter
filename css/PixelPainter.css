@@ -1,5 +1,6 @@
 #body{
   background-color: lightblue;
+  position: relative;
 }
 #title{
   color : white;
@@ -9,13 +10,19 @@
 #pixelPainter{
   min-width: 900px;
   text-align: center;
+  position: relative;
 }
 .grid{
   margin : 0;
 }
 .colors{
   margin :5px;
+  position: relative;
+  top : -545px;
+  left : 210px;
 }
-#Erase{
-
+.tools{
+  position :relative;
+  top : -492px;
+  left : 163px;
 }

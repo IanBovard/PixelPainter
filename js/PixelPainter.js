@@ -43,7 +43,6 @@ function colorPopulator(array){
     let colorRows = document.createElement("div");
     colorRows.setAttribute("class", "colors");
     colorRows.setAttribute("id", array[i]);
-    colorRows.style.display = "inline-block";
     colorRows.style.boxSizing = "border-box";
     colorRows.style.width = "50px";
     colorRows.style.height = "50px";
@@ -60,6 +59,7 @@ function toolBoxPopulator(array){
   for (let i = 0; i <array.length; i++){
     let toolRows = document.createElement("div");
     toolRows.setAttribute("id", array[i]);
+    toolRows.setAttribute("class", "tools");
     toolRows.style.backgroundColor = "lightslategrey";
     toolRows.style.margin = "1px";
     toolRows.style.boxSizing = "border-box";
